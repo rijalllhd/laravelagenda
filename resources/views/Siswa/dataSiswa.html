@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dist/output.css">
+    <title>Data Siswa</title>
+</head>
+<body class="bg-zinc-500 dark:bg-zinc-400" >
+    <nav class="bg-slate-100 py-2 dark:bg-gray-800 shadow-md">
+        <ul class="flex justify-end">
+
+            <!-- logo -->
+            <li><a href="#" class="mr-[780px] py-2 px-4 text-xl hover:font-semibold dark:text-white">Logo</a></li>
+
+            <li><a href="dashboard.html"
+                    class="block py-2 px-4 text-gray-700 dark:text-gray-100 text-xl hover:font-semibold">Beranda</a>
+            </li>
+
+            <li class="relative">
+                <a href="#"
+                    class="block py-2 px-4 text-gray-700 font-medium dark:text-gray-100 text-xl hover:font-semibold">Siswa</a>
+                <!-- Fungsi dropdown -->
+                <div class="absolute left-0 mt-1 py-2 w-48 bg-white shadow-lg rounded hidden">
+                    <a href="dataSiswa.html" class="block px-4 py-2 text-gray-800 rounded mx-2  hover:bg-gray-200">Data Siswa</a>
+                    <a href="dataBukuInduk.html" class="block px-4 py-2 text-gray-800 rounded mx-2  hover:bg-gray-200">Buku Induk</a>
+                    <a href="dataKelas.html" class="block px-4 py-2 text-gray-800 rounded mx-2  hover:bg-gray-200">Kelas & Jurusan</a>
+
+                </div>
+            </li>
+
+            <li class="relative">
+                <a href="#"
+                    class="block py-2 px-4 text-gray-700 dark:text-gray-100 text-xl hover:font-semibold">Guru</a>
+                <!-- Fungsi dropdown -->
+                <div class="absolute left-0 mt-1 py-2 w-48 bg-white shadow-lg rounded hidden">
+                    <a href="dataGuru.html" class="block px-4 py-2 text-gray-800 rounded mx-2  hover:bg-gray-200">Data Guru</a>
+                    <a href="dataMapel.html" class="block px-4 py-2 text-gray-800 rounded mx-2  hover:bg-gray-200">Mata Pelajaran</a>
+                </div>
+            </li>
+
+            <!-- tema -->
+            <li id="theme-toggle"
+                class="ml-16 mr-32 text-gray-500 dark:text-gray-400 bg-gray-300 dark:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        fill-rule="evenodd" clip-rule="evenodd"></path>
+                </svg>
+            </li>
+        </ul>
+    </nav>
+    <br>
+
+    <!-- content here -->
+    <div class="flex-1 p-10">
+        <header class="justify-between w-full">
+            <a href="dataBukuInduk.html"
+                class="float-right bg-slate-700 text-white p-2 rounded-md mr-20">
+                Buku Induk
+            </a>
+            <h3 class="font-bold text-lg text-white tracking-wider p-2 ml-16">DATA SISWA</h3>
+        </header>
+
+        <div class="h-screen">
+            <section class="flex items-center text-gray-600">
+                <div class="container px-5 py-5 mx-auto">
+                    <div class="my-1 px-1 w-full">
+                        <div class="overflow-hidden rounded-lg shadow-md p-3 bg-slate-200 tracking-wide space-y-2">
+                            <div class="justify-between p-4">
+                                <button href="{{ url('siswa/create') }}" type="button"
+                                    class="float-right bg-emerald-700 text-white p-2 rounded-md">
+                                    Tambah Data
+                                </button>
+                                <form action="{{ url('') }}" method="get" class="hidden sm:flex">
+                                    <input type="search" name="katakunci" value="{{ Request::get ('') }}"
+                                        placeholder="Cari di sini" aria-label="search" class="rounded pl-2">
+                                    <button class="p-2 px-6 ml-4 bg-slate-600 dark:bg-slate-700 text-white rounded-md"
+                                        type="submit">Cari</button>
+                                </form>
+                            </div>
+                            <!-- Button id javascript -->
+                            <div class="flex-1 justify-evenly">
+                                <div class="relative inline-block mx-3">
+                                    <button id="dropdownToggle" class="py-2 px-4 bg-emerald-400 hover:bg-emerald-600 hover:text-gray-200 hover:font-medium text-gray-800 rounded-md focus:outline-none">
+                                        RPL
+                                    </button>
+                                        <div id="dropdownMenu" class="absolute top-full left-0 w-48 bg-white shadow-lg rounded-md hidden">
+                                            <button id="buttonR1" class="block w-full px-4 py-2 text-left hover:bg-gray-100">X RPL</button>
+                                            <button id="buttonR2" class="block w-full px-4 py-2 text-left hover:bg-gray-100">XI RPL</button>
+                                            <button id="buttonR3" class="block w-full px-4 py-2 text-left hover:bg-gray-100">XII RPL</button>
+                                        </div>
+                                </div>
+                                <!-- /// -->
+                                <div class="relative inline-block">
+                                    <button id="dropdownToggle" class="py-2 px-4 bg-neutral-300 hover:bg-neutral-400 hover:text-gray-200 hover:font-medium text-gray-800 rounded-md focus:outline-none">
+                                        KIMIA
+                                    </button>
+                                        <div id="dropdownMenu" class="absolute top-full left-0 w-48 bg-white shadow-lg rounded-md hidden">
+                                            <button id="buttonK1" class="block w-full px-4 py-2 text-left hover:bg-gray-100">X KIMIA</button>
+                                            <button id="buttonK2" class="block w-full px-4 py-2 text-left hover:bg-gray-100">XI KIMIA</button>
+                                            <button id="buttonK3" class="block w-full px-4 py-2 text-left hover:bg-gray-100">XII KIMIA</button>
+                                        </div>
+                                </div>
+                                <!-- /// -->
+                                <div class="relative inline-block">
+                                    <button id="dropdownToggle" class="py-2 px-4 bg-orange-600 hover:bg-orange-800 hover:text-gray-200 hover:font-medium text-gray-800 rounded-md focus:outline-none">
+                                        LAS
+                                    </button>
+                                        <div id="dropdownMenu" class="absolute top-full left-0 w-48 bg-white shadow-lg rounded-md hidden">
+                                            <button id="buttonR1" class="block w-full px-4 py-2 text-left hover:bg-gray-100">XI KIMIA 1</button>
+                                            <button id="buttonR2" class="block w-full px-4 py-2 text-left hover:bg-gray-100">XI KIMIA 2</button>
+                                            <button id="buttonR3" class="block w-full px-4 py-2 text-left hover:bg-gray-100">XI KIMIA 3</button>
+                                        </div>
+                                </div>
+                            </div>
+ 
+                            <div class="overflow-x-auto">
+                                <table id="tableR1" class="w-full text-sm text-left text-gray-600">
+                                    <thead class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-100">
+                                        <tr>
+                                            <th class="border-collapse border p-2">No</th>
+                                            <th class="border-collapse border p-2">NIS</th>
+                                            <th class="border-collapse border p-2">Nama</th>
+                                            <th class="border-collapse border p-2">Kelas</th>
+                                            <th class="border-collapse border p-2">Jurusan</th>
+                                            <th class="border-collapse border-y border-r-0  p-2">Aksi</th>
+                                            <th class="border-collapse border-y border-l-0 border-r p-2"></th>
+                                        </tr>
+                                    </thead>
+                                        <!-- <?php $i = $pasien->firstItem() ?>
+                                        @foreach ($siswa as $s) -->
+                                    <tbody class="bg-gray-100 dark:bg-gray-300 rounded-md">
+                                        <tr>
+                                            <td class="p-2"><!-- {{ $i }} -->1</td>
+                                            <td class="p-2"><!--{{ $s->nik }}-->200213672115</td>
+                                            <td class="p-2"><!--{{ $s->nama }}-->Andi Supriadi</td>
+                                            <td class="p-2"><!--{{ $s->kelas }}-->XI </td>
+                                            <td class="p-2"><!--{{ $s->jurusan->rpl1 }}-->RPL 1</td>
+                                            <td class="p-2">
+                                                <form onsubmit="return confirm('Yakin Ingin Menghapus Data Ini?')" action="{{ url('siswa/'.$s->id) }}" method="post">
+                                                    <!-- @csrf
+                                                    @method('DELETE') -->
+                                                    <button type="submit" name="submit" class="float-right bg-red-500 text-white p-2 rounded-md dark:bg-red-600">Hapus</button>
+                                                </form>
+                                            </td>
+                                            <td class="p-2">
+                                                <a href="{{ url('siswa/'.$s->id.'/edit') }}" class="bg-yellow-500 text-white p-2 rounded-md dark:bg-yellow-600">Ubah</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                        <!-- <?php $i++?>
+                                        @endforeach -->
+                                </table>
+                                <table id="tableR2" class="w-full text-sm text-left text-gray-600 hidden">
+                                    <thead class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-100">
+                                        <tr>
+                                            <th class="border-collapse border p-2">No</th>
+                                            <th class="border-collapse border p-2">NIS</th>
+                                            <th class="border-collapse border p-2">Nama</th>
+                                            <th class="border-collapse border p-2">Kelas</th>
+                                            <th class="border-collapse border p-2">Jurusan</th>
+                                            <th class="border-collapse border-y border-r-0  p-2">Aksi</th>
+                                            <th class="border-collapse border-y border-l-0 border-r p-2"></th>
+                                        </tr>
+                                    </thead>
+                                        <!-- <?php $i = $pasien->firstItem() ?>
+                                        @foreach ($siswa as $s) -->
+                                    <tbody class="bg-gray-100 dark:bg-gray-300 rounded-md">
+                                        <tr>
+                                            <td class="p-2"><!-- {{ $i }} -->1</td>
+                                            <td class="p-2"><!--{{ $s->nik }}-->200297568902</td>
+                                            <td class="p-2"><!--{{ $s->nama }}-->Budi Gunawan</td>
+                                            <td class="p-2"><!--{{ $s->kelas }}-->XI </td>
+                                            <td class="p-2"><!--{{ $s->jurusan->rpl1 }}-->RPL 2</td>
+                                            <td class="p-2">
+                                                <form onsubmit="return confirm('Yakin Ingin Menghapus Data Ini?')" action="{{ url('siswa/'.$s->id) }}" method="post">
+                                                    <!-- @csrf
+                                                    @method('DELETE') -->
+                                                    <button type="submit" name="submit" class="float-right bg-red-500 text-white p-2 rounded-md dark:bg-red-600">Hapus</button>
+                                                </form>
+                                            </td>
+                                            <td class="p-2">
+                                                <a href="{{ url('siswa/'.$s->id.'/edit') }}" class="bg-yellow-500 text-white p-2 rounded-md dark:bg-yellow-600">Ubah</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                        <!-- <?php $i++?>
+                                        @endforeach -->
+                                </table>
+                                <table id="tableR3" class="w-full text-sm text-left text-gray-600 hidden">
+                                    <thead class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-100">
+                                        <tr>
+                                            <th class="border-collapse border p-2">No</th>
+                                            <th class="border-collapse border p-2">NIS</th>
+                                            <th class="border-collapse border p-2">Nama</th>
+                                            <th class="border-collapse border p-2">Kelas</th>
+                                            <th class="border-collapse border p-2">Jurusan</th>
+                                            <th class="border-collapse border-y border-r-0  p-2">Aksi</th>
+                                            <th class="border-collapse border-y border-l-0 border-r p-2"></th>
+                                        </tr>
+                                    </thead>
+                                        <!-- <?php $i = $pasien->firstItem() ?>
+                                        @foreach ($siswa as $s) -->
+                                    <tbody class="bg-gray-100 dark:bg-gray-300 rounded-md">
+                                        <tr>
+                                            <td class="p-2"><!-- {{ $i }} -->1</td>
+                                            <td class="p-2"><!--{{ $s->nik }}-->200298347612</td>
+                                            <td class="p-2"><!--{{ $s->nama }}-->Cipto Kusumo</td>
+                                            <td class="p-2"><!--{{ $s->kelas }}-->XI </td>
+                                            <td class="p-2"><!--{{ $s->jurusan->rpl1 }}-->RPL 3</td>
+                                            <td class="p-2">
+                                                <form onsubmit="return confirm('Yakin Ingin Menghapus Data Ini?')" action="{{ url('siswa/'.$s->id) }}" method="post">
+                                                    <!-- @csrf
+                                                    @method('DELETE') -->
+                                                    <button type="submit" name="submit" class="float-right bg-red-500 text-white p-2 rounded-md dark:bg-red-600">Hapus</button>
+                                                </form>
+                                            </td>
+                                            <td class="p-2">
+                                                <a href="{{ url('siswa/'.$s->id.'/edit') }}" class="bg-yellow-500 text-white p-2 rounded-md dark:bg-yellow-600">Ubah</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                        <!-- <?php $i++?>
+                                        @endforeach -->
+                                </table>
+                                <table id="tableK1" class="w-full text-sm text-left text-gray-600 hidden">
+                                    <thead class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-100">
+                                        <tr>
+                                            <th class="border-collapse border p-2">No</th>
+                                            <th class="border-collapse border p-2">NIS</th>
+                                            <th class="border-collapse border p-2">Nama</th>
+                                            <th class="border-collapse border p-2">Kelas</th>
+                                            <th class="border-collapse border p-2">Jurusan</th>
+                                            <th class="border-collapse border-y border-r-0  p-2">Aksi</th>
+                                            <th class="border-collapse border-y border-l-0 border-r p-2"></th>
+                                        </tr>
+                                    </thead>
+                                        <!-- <?php $i = $pasien->firstItem() ?>
+                                        @foreach ($siswa as $s) -->
+                                    <tbody class="bg-gray-100 dark:bg-gray-300 rounded-md">
+                                        <tr>
+                                            <td class="p-2"><!-- {{ $i }} -->1</td>
+                                            <td class="p-2"><!--{{ $s->nik }}-->200298347612</td>
+                                            <td class="p-2"><!--{{ $s->nama }}-->Dedi Supandi</td>
+                                            <td class="p-2"><!--{{ $s->kelas }}-->X </td>
+                                            <td class="p-2"><!--{{ $s->jurusan->rpl1 }}-->KIMIA 1</td>
+                                            <td class="p-2">
+                                                <form onsubmit="return confirm('Yakin Ingin Menghapus Data Ini?')" action="{{ url('siswa/'.$s->id) }}" method="post">
+                                                    <!-- @csrf
+                                                    @method('DELETE') -->
+                                                    <button type="submit" name="submit" class="float-right bg-red-500 text-white p-2 rounded-md dark:bg-red-600">Hapus</button>
+                                                </form>
+                                            </td>
+                                            <td class="p-2">
+                                                <a href="{{ url('siswa/'.$s->id.'/edit') }}" class="bg-yellow-500 text-white p-2 rounded-md dark:bg-yellow-600">Ubah</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                        <!-- <?php $i++?>
+                                        @endforeach -->
+                                </table>
+                                <!-- {{ $siswa->links('pagination::tailwind') }} -->
+                                <br>
+                                <br>
+                                <p class="text-sm font-light text-center">Teaching Factory 2023 - SMK Negeri Gunung Putri</p>                                
+                                <br>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </section>        
+        </div>
+    </div>
+
+
+</body>
+
+<script src="./JS/mainscript.js">
+</script>
+
+
+</html>
